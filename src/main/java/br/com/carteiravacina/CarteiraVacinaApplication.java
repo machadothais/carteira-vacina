@@ -1,4 +1,4 @@
-package br.com.carteiravacina.carteira_vacina;
+package br.com.carteiravacina;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
