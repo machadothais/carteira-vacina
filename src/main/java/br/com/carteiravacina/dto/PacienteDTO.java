@@ -1,0 +1,19 @@
+package br.com.carteiravacina.dto;
+
+import br.com.carteiravacina.model.enums.Sexo;
+import lombok.*;
+
+import java.time.LocalDate;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class PacienteDTO {
+
+    private String nome_paciente;
+    private Sexo sexo;
+    private LocalDate data_nascimento;
+    private String cpf;
+
+}
