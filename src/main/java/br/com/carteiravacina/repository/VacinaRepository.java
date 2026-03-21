@@ -1,5 +1,8 @@
 package br.com.carteiravacina.repository;
 
-public class VacinaRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
 
+import br.com.carteiravacina.model.Vacina;
+
+public interface VacinaRepository extends JpaRepository<Vacina, Long> {
 }
