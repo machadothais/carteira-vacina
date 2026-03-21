@@ -1,8 +1,8 @@
 // br/com/carteiravacina/service/PacienteService.java
 package br.com.carteiravacina.service;
 
-import br.com.carteiravacina.dto.PacienteDTO;
-import br.com.carteiravacina.dto.PacienteResponse;
+import br.com.carteiravacina.DTO.PacienteDTO;
+import br.com.carteiravacina.DTO.PacienteResponse;
 import br.com.carteiravacina.model.Paciente;
 import br.com.carteiravacina.repository.PacienteRepository;
 import jakarta.transaction.Transactional;
@@ -84,7 +84,7 @@ public class PacienteService {
 
     private PacienteResponse toResponse(Paciente p) {
         return PacienteResponse.builder()
-                .id_paciente(p.getId_paciente())
+                .id_paciente(p.getIdPaciente())
                 .nome_paciente(p.getNome_paciente())
                 .sexo(p.getSexo())
                 .data_nascimento(p.getData_nascimento())
