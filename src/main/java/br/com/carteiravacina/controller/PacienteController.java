@@ -1,7 +1,6 @@
 package br.com.carteiravacina.controller;
-
-import br.com.carteiravacina.DTO.PacienteDTO;
-import br.com.carteiravacina.DTO.PacienteResponse;
+import br.com.carteiravacina.dto.PacienteDTO;
+import br.com.carteiravacina.dto.PacienteResponse;
 import br.com.carteiravacina.service.PacienteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +20,7 @@ public class PacienteController {
     // POST
     @PostMapping
     public ResponseEntity<PacienteResponse> criar(@RequestBody PacienteDTO dto) {
-        PacienteResponse response = service.save(dto);
+        PacienteResponse response = service.save(dto); 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
