@@ -1,8 +1,8 @@
 // br/com/carteiravacina/service/PacienteService.java
 package br.com.carteiravacina.service;
 
-import br.com.carteiravacina.DTO.PacienteDTO;
-import br.com.carteiravacina.DTO.PacienteResponse;
+import br.com.carteiravacina.dto.PacienteDTO;
+import br.com.carteiravacina.dto.PacienteResponse;
 import br.com.carteiravacina.model.Paciente;
 import br.com.carteiravacina.repository.PacienteRepository;
 import jakarta.transaction.Transactional;
