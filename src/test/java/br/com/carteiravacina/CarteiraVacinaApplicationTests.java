@@ -1,4 +1,4 @@
-package br.com.carteiravacina.carteira_vacina;
+package br.com.carteiravacina;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
