@@ -1,4 +1,4 @@
-package br.com.carteiravacina.DTO;
+package br.com.carteiravacina.dto;
 
 import br.com.carteiravacina.model.enums.Sexo;
 import lombok.*;
