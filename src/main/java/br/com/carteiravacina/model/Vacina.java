@@ -21,23 +21,20 @@ public class Vacina {
     public Vacina() {
     }
     
-    public Vacina(String nomeVacina, String descricaoVacina, String limiteAplicacao, PublicoAlvoEnum publicoAlvo,
-            Dose dose) {
+    public Vacina(String nomeVacina, String descricaoVacina, int limiteAplicacao, PublicoAlvoEnum publicoAlvo) {
         this.nomeVacina = nomeVacina;
         this.descricaoVacina = descricaoVacina;
         this.limiteAplicacao = limiteAplicacao;
-
-        this.dose = dose;
+        this.publicoAlvo = publicoAlvo;
     }
 
-    public Vacina(Long idVacina, String nomeVacina, String descricaoVacina, String limiteAplicacao,
-            PublicoAlvoEnum publicoAlvo, Dose dose) {
+    public Vacina(Long idVacina, String nomeVacina, String descricaoVacina, int limiteAplicacao,
+            PublicoAlvoEnum publicoAlvo) {
         this.idVacina = idVacina;
         this.nomeVacina = nomeVacina;
         this.descricaoVacina = descricaoVacina;
         this.limiteAplicacao = limiteAplicacao;
         this.publicoAlvo = publicoAlvo;
-        this.dose = dose;
     }
 
     @Id
@@ -46,15 +43,12 @@ public class Vacina {
     private Long idVacina;
     private String nomeVacina;
     private String descricaoVacina;
-    private String limiteAplicacao;
-
+    private int limiteAplicacao;
+    
     @Enumerated(EnumType.STRING)
     @Column(name = "publico_alvo")
     private PublicoAlvoEnum publicoAlvo;
 
-    @JoinColumn(name = "id_dose")
-    @ManyToOne
-    private Dose dose;
 
     public Long getIdVacina() {
         return idVacina;
@@ -80,11 +74,11 @@ public class Vacina {
         this.descricaoVacina = descricaoVacina;
     }
 
-    public String getLimiteAplicacao() {
+    public int getLimiteAplicacao() {
         return limiteAplicacao;
     }
 
-    public void setLimiteAplicacao(String limiteAplicacao) {
+    public void setLimiteAplicacao(int limiteAplicacao) {
         this.limiteAplicacao = limiteAplicacao;
     }
 
@@ -95,17 +89,5 @@ public class Vacina {
     public void setPublicoAlvo(PublicoAlvoEnum publicoAlvo) {
         this.publicoAlvo = publicoAlvo;
     }
-
-    public Dose getDose() {
-        return dose;
-    }
-
-    public void setDose(Dose dose) {
-        this.dose = dose;
-    }
-
-    
-    
-
-    
+ 
 }
