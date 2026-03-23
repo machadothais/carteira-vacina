@@ -103,7 +103,7 @@ public class ImunizacaoController {
 
     // DELETAR POR ID PACIENTE
     @DeleteMapping("/excluir/paciente/{id_paciente}")
-    public ResponseEntity<?> deletePorIdPaciente(@PathVariable("id_paciente") Integer id_paciente){
+    public ResponseEntity<?> deletePorIdPaciente(@PathVariable("id_paciente") Long id_paciente){
         try {
             String deletarPorIdPaceinte = imunizacaoService.excluirTodasImunizacaoPorPaciente(id_paciente);
             return ResponseEntity.ok(deletarPorIdPaceinte);
@@ -129,7 +129,7 @@ public class ImunizacaoController {
     // CONSULTAR POR ID PACIENTE EM INTERVALO DE TEMPO
     @GetMapping("/consultar/paciente/{id}/aplicacao/{dt_ini}/{dt_fim}")
     public ResponseEntity<?> consultarIdPacienteIntervaloAplicacao(
-        @PathVariable("id")Integer id,  
+        @PathVariable("id")Long id,
         @PathVariable("dt_ini")  LocalDate dt_ini,
         @PathVariable("dt_fim")  LocalDate dt_fim
         ){

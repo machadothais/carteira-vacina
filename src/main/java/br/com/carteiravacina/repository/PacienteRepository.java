@@ -14,4 +14,6 @@ public interface PacienteRepository extends JpaRepository<Paciente, Long> {
     boolean existsByCpf(String cpf);
 
     boolean existsByCpfAndIdPacienteNot(String cpf, Long id);
+
+    ;
 }

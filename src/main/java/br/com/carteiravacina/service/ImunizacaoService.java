@@ -58,10 +58,10 @@ public class ImunizacaoService {
     }
 
     // Excluir TODAS a Imunização de um paciente
-    public String excluirTodasImunizacaoPorPaciente(Integer idPaciente){
-       List <Imunizacao> imunizacaos =  imunizacaoRepository.findByPacienteId(idPaciente);
+    public String excluirTodasImunizacaoPorPaciente(Long idPaciente){
+       List <Imunizacao> imunizacaos =  imunizacaoRepository.findByPacienteIdPaciente(idPaciente);
         if(!imunizacaos.isEmpty()){
-             imunizacaoRepository.deleteByPacienteId(idPaciente);
+             imunizacaoRepository.deleteByPacienteIdPaciente(idPaciente);
             return String.format("Todas as imnuzações do paciente %d foram excluidas", idPaciente);
         }else{
             throw new RuntimeException("O paciente do Id: " + idPaciente +" não tem nehuma Imunização ");
@@ -80,14 +80,14 @@ public class ImunizacaoService {
     }
 
     // Buscr por Id do Paciente
-    public List<Imunizacao> buscarPorPaciente(Integer idPaciente){
-        return imunizacaoRepository.findByPacienteId(idPaciente);
+    public List<Imunizacao> buscarPorPaciente(Long idPaciente){
+        return imunizacaoRepository.findByPacienteIdPaciente(idPaciente);
     }
 
     // Consultar Imunizações por id do paciente e intervalo de aplicação
-    public List<Imunizacao> buscarPorIdPacienteandIntervaloAplicacao(Integer idPaciente ,LocalDate dataInicio, LocalDate dataFim){
+    public List<Imunizacao> buscarPorIdPacienteandIntervaloAplicacao(Long idPaciente ,LocalDate dataInicio, LocalDate dataFim){
         return imunizacaoRepository.
-            findByPacienteIdAndDataAplicacaoBetween(
+            findByPacienteIdPacienteAndDataAplicacaoBetween(
                 idPaciente, dataInicio, dataFim
             );
     }
