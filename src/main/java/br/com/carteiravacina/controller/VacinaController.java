@@ -1,6 +1,5 @@
 package br.com.carteiravacina.controller;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.carteiravacina.model.Vacina;
 import br.com.carteiravacina.service.VacinaService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("vacina")

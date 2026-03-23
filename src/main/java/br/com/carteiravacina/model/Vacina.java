@@ -21,14 +21,14 @@ public class Vacina {
     public Vacina() {
     }
     
-    public Vacina(String nomeVacina, String descricaoVacina, int limiteAplicacao, PublicoAlvoEnum publicoAlvo) {
+    public Vacina(String nomeVacina, String descricaoVacina, Integer limiteAplicacao, PublicoAlvoEnum publicoAlvo) {
         this.nomeVacina = nomeVacina;
         this.descricaoVacina = descricaoVacina;
         this.limiteAplicacao = limiteAplicacao;
         this.publicoAlvo = publicoAlvo;
     }
 
-    public Vacina(Long idVacina, String nomeVacina, String descricaoVacina, int limiteAplicacao,
+    public Vacina(Long idVacina, String nomeVacina, String descricaoVacina, Integer limiteAplicacao,
             PublicoAlvoEnum publicoAlvo) {
         this.idVacina = idVacina;
         this.nomeVacina = nomeVacina;
@@ -43,7 +43,7 @@ public class Vacina {
     private Long idVacina;
     private String nomeVacina;
     private String descricaoVacina;
-    private int limiteAplicacao;
+    private Integer limiteAplicacao;
     
     @Enumerated(EnumType.STRING)
     @Column(name = "publico_alvo")
@@ -74,11 +74,11 @@ public class Vacina {
         this.descricaoVacina = descricaoVacina;
     }
 
-    public int getLimiteAplicacao() {
+    public Integer getLimiteAplicacao() {
         return limiteAplicacao;
     }
 
-    public void setLimiteAplicacao(int limiteAplicacao) {
+    public void setLimiteAplicacao(Integer limiteAplicacao) {
         this.limiteAplicacao = limiteAplicacao;
     }
 

@@ -13,6 +13,6 @@ public interface VacinaRepository extends JpaRepository<Vacina, Long> {
 
     List<Vacina> findByPublicoAlvo(PublicoAlvoEnum publicoEnum);
 
-    List<Vacina> findByLimiteAplicacao(int idade);
+    List<Vacina> findByLimiteAplicacao(Integer idade);
 
 }
