@@ -4,10 +4,7 @@ import java.time.LocalDate;
 
 import br.com.carteiravacina.model.enums.Sexo;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Setter
@@ -15,6 +12,8 @@ import lombok.Setter;
 @Data
 @Getter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Paciente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

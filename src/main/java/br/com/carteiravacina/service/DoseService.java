@@ -21,8 +21,8 @@ public class DoseService {
 
     public Dose salvar(Dose dose) {
 
-        if (dose.getVacina() == null) {
-            throw new RuntimeException("Dose precisa de vacina");
+        if (dose.getVacina() == null || dose.getVacina().getIdVacina() == null) {
+            throw new RuntimeException("Dose precisa estar vinculada a uma vacina");
         }
 
         Long idVacina = dose.getVacina().getIdVacina();
@@ -42,4 +42,5 @@ public class DoseService {
     public List<Dose> listarPorVacina(Long idVacina) {
         return doseRepository.findByVacina_IdVacina(idVacina);
     }
+
 }
