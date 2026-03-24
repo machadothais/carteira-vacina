@@ -17,7 +17,7 @@ public class Imunizacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idImunizacao;
     @ManyToOne
-    @JoinColumn(name = "id_paciente")
+    @JoinColumn(name = "idPaciente")
     private Paciente paciente;
     @ManyToOne
     @JoinColumn(name = "id_dose")

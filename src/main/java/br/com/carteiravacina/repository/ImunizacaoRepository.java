@@ -1,16 +1,20 @@
 package br.com.carteiravacina.repository;
 
+import br.com.carteiravacina.model.Imunizacao;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+public interface ImunizacaoRepository extends JpaRepository<Imunizacao, Long> {
 
-import br.com.carteiravacina.model.Imunizacao;
+    List<Imunizacao> findByPaciente_IdPaciente(Long idPaciente);
 
-public interface ImunizacaoRepository extends JpaRepository<Imunizacao, Integer> {
-    List <Imunizacao> findByPacienteId(Integer idPaciente);
+    void deleteByPaciente_IdPaciente(Long idPaciente);
 
-    List <Imunizacao> findByPacienteIdAndDataAplicacaoBetween(Integer idPaciente ,LocalDate dataInicio, LocalDate dataFim);
-
-    void deleteByPacienteId(Integer idPaciente);
+    List<Imunizacao> findByPaciente_IdPacienteAndDataAplicacaoBetween(
+            Long idPaciente,
+            LocalDate dataInicio,
+            LocalDate dataFim
+    );
 }

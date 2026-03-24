@@ -8,6 +8,6 @@ import br.com.carteiravacina.model.Dose;
 
 public interface DoseRepository extends JpaRepository<Dose, Long> {
 
-    List<Dose> findByVacinaId(Long idVacina);
+    List<Dose> findByVacina_IdVacina(Long idVacina);
 
 }

@@ -40,6 +40,6 @@ public class DoseService {
     }
 
     public List<Dose> listarPorVacina(Long idVacina) {
-        return doseRepository.findByVacinaId(idVacina);
+        return doseRepository.findByVacina_IdVacina(idVacina);
     }
 }

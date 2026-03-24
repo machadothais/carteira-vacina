@@ -1,71 +1,83 @@
 package br.com.carteiravacina.service;
 
-import br.com.carteiravacina.dto.request.PacienteRequestDTO;
-import br.com.carteiravacina.dto.response.PacienteResponseDTO;
-import br.com.carteiravacina.enums.Sexo;
-import br.com.carteiravacina.mapper.PacienteMapper;
+import br.com.carteiravacina.dto.PacienteDTO;
+import br.com.carteiravacina.dto.PacienteResponse;
 import br.com.carteiravacina.model.Paciente;
+import br.com.carteiravacina.model.enums.Sexo;
 import br.com.carteiravacina.repository.PacienteRepository;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+@ActiveProfiles("test")
 @ExtendWith(MockitoExtension.class)
 class PacienteServiceTest {
 
     @Mock
-    private PacienteRepository pacienteRepository;
-
-    @Mock
-    private PacienteMapper pacienteMapper;
+    private PacienteRepository repository;
 
     @InjectMocks
     private PacienteService pacienteService;
 
     @Test
-    void deveCadastrarPacienteComSucesso() {
-        PacienteRequestDTO requestDTO = new PacienteRequestDTO(
+    @DisplayName("Deve salvar paciente com sucesso")
+    void deveSalvarPacienteComSucesso() {
+        PacienteDTO dto = new PacienteDTO(
                 "Maria Souza",
-                "12345678900",
-                Sexo.F,
-                LocalDate.of(2010, 5, 10)
+                Sexo.FEMININO,
+                LocalDate.of(2010, 5, 10),
+                "12345678900"
         );
 
-        Paciente paciente = new Paciente();
-        paciente.setNomePaciente("Maria Souza");
-        paciente.setCpfPaciente("12345678900");
-        paciente.setSexo(Sexo.F);
-        paciente.setDataNascimento(LocalDate.of(2010, 5, 10));
+        Paciente pacienteSalvo = Paciente.builder()
+                .idPaciente(1L)
+                .nome_paciente("Maria Souza")
+                .sexo(Sexo.FEMININO)
+                .data_nascimento(LocalDate.of(2010, 5, 10))
+                .cpf("12345678900")
+                .build();
 
-        Paciente pacienteSalvo = new Paciente();
-        pacienteSalvo.setId(1L);
-        pacienteSalvo.setNomePaciente("Maria Souza");
-        pacienteSalvo.setCpfPaciente("12345678900");
-        pacienteSalvo.setSexo(Sexo.F);
-        pacienteSalvo.setDataNascimento(LocalDate.of(2010, 5, 10));
+        when(repository.existsByCpf("12345678900")).thenReturn(false);
+        when(repository.save(any(Paciente.class))).thenReturn(pacienteSalvo);
 
-        PacienteResponseDTO responseDTO = new PacienteResponseDTO(
-                1L,
+        PacienteResponse resultado = pacienteService.save(dto);
+
+        assertNotNull(resultado);
+        assertEquals(1L, resultado.getId_paciente());
+        assertEquals("Maria Souza", resultado.getNome_paciente());
+        assertEquals("12345678900", resultado.getCpf());
+        assertEquals(Sexo.FEMININO, resultado.getSexo());
+    }
+
+    @Test
+    @DisplayName("Deve lançar exceção quando CPF já estiver cadastrado")
+    void deveLancarExcecaoQuandoCpfJaExistir() {
+        PacienteDTO dto = new PacienteDTO(
                 "Maria Souza",
-                "12345678900",
-                Sexo.F,
-                LocalDate.of(2010, 5, 10)
+                Sexo.FEMININO,
+                LocalDate.of(2010, 5, 10),
+                "12345678900"
         );
 
-        when(pacienteMapper.toModel(requestDTO)).thenReturn(paciente);
-        when(pacienteRepository.save(paciente)).thenReturn(pacienteSalvo);
-        when(pacienteMapper.toResponseDTO(pacienteSalvo)).thenReturn(responseDTO);
+        when(repository.existsByCpf("12345678900")).thenReturn(true);
 
-        PacienteResponseDTO resultado = pacienteService.cadastrar(requestDTO);
+        RuntimeException exception = assertThrows(
+                RuntimeException.class,
+                () -> pacienteService.save(dto)
+        );
 
-        assertEquals(1L, resultado.id());
-        assertEquals("Maria Souza", resultado.nomePaciente());
+        assertEquals("CPF já cadastrado: 12345678900", exception.getMessage());
     }
 }
